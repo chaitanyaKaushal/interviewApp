@@ -5,10 +5,24 @@ import UpcomingInterviewsScreen from '../screens/UpcomingInterviewsScreen'
 import NewInterviewScreen from '../screens/NewInterviewScreen'
 import EditInterviewScreen from '../screens/EditInterviewScreen'
 
-const InterviewNavigator = createStackNavigator({
-  UpcomingInterviews: UpcomingInterviewsScreen,
-  NewInterview: NewInterviewScreen,
-  EditInterview: EditInterviewScreen,
-})
+const InterviewNavigator = createStackNavigator(
+  {
+    UpcomingInterviews: UpcomingInterviewsScreen,
+    NewInterview: NewInterviewScreen,
+    EditInterview: EditInterviewScreen,
+  },
+  {
+    defaultNavigationOptions: {
+      headerStyle: {
+        backgroundColor: 'royalblue',
+      },
+      headerTintColor: 'floralwhite',
+      headerTitleStyle: {
+        textAlign: 'center',
+        fontFamily: 'open-sans-bold',
+      },
+    },
+  }
+)
 
 export default createAppContainer(InterviewNavigator)
