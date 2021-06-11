@@ -94,22 +94,58 @@ const NewInterviewScreen = (props) => {
       ])
       return
     }
-    let startTime = formState.inputValues.startDate.concat(
-      formState.inputValues.startMonth,
-      formState.inputValues.startHour,
-      formState.inputValues.startMinutes
-    )
-    let endTime = formState.inputValues.endDate.concat(
-      formState.inputValues.endMonth,
-      formState.inputValues.endHour,
-      formState.inputValues.endMinutes
-    )
-    if (+startTime >= +endTime) {
+    if (+formState.inputValues.startMonth > +formState.inputValues.endMonth) {
       Alert.alert('Wrong!', 'Meeting cannot end before it starts', [
         { text: 'Okay', style: 'destructive' },
       ])
       return
     }
+    if (
+      +formState.inputValues.startMonth == +formState.inputValues.endMonth &&
+      +formState.inputValues.startDate > +formState.inputValues.endDate
+    ) {
+      Alert.alert('Wrong!', 'Meeting cannot end before it starts', [
+        { text: 'Okay', style: 'destructive' },
+      ])
+      return
+    }
+    if (
+      +formState.inputValues.startMonth == +formState.inputValues.endMonth &&
+      +formState.inputValues.startDate == +formState.inputValues.endDate &&
+      +formState.inputValues.startHour > +formState.inputValues.endHour
+    ) {
+      Alert.alert('Wrong!', 'Meeting cannot end before it starts', [
+        { text: 'Okay', style: 'destructive' },
+      ])
+      return
+    }
+    if (
+      +formState.inputValues.startMonth == +formState.inputValues.endMonth &&
+      +formState.inputValues.startDate == +formState.inputValues.endDate &&
+      +formState.inputValues.startHour == +formState.inputValues.endHour &&
+      +formState.inputValues.startMinutes >= +formState.inputValues.endMinutes
+    ) {
+      Alert.alert('Wrong!', 'Meeting cannot end before it starts', [
+        { text: 'Okay', style: 'destructive' },
+      ])
+      return
+    }
+    // let startTime = formState.inputValues.startDate.concat(
+    //   formState.inputValues.startMonth,
+    //   formState.inputValues.startHour,
+    //   formState.inputValues.startMinutes
+    // )
+    // let endTime = formState.inputValues.endDate.concat(
+    //   formState.inputValues.endMonth,
+    //   formState.inputValues.endHour,
+    //   formState.inputValues.endMinutes
+    // )
+    // if (+startTime >= +endTime) {
+    //   Alert.alert('Wrong!', 'Meeting cannot end before it starts', [
+    //     { text: 'Okay', style: 'destructive' },
+    //   ])
+    //   return
+    // }
     for (let i = 0; i < adminInterviews.length; i++) {
       if (editedInterview && adminInterviews[i].id === editedInterview.id) {
         continue
