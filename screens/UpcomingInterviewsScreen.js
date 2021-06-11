@@ -7,17 +7,7 @@
 //   Alert,
 //   // ActivityIndicator,
 // } from 'react-native'
-// import { useSelector, useDispatch } from 'react-redux'
-// import Card from '../components/Card'
-// import { HeaderButtons, Item } from 'react-navigation-header-buttons'
-// import HeaderButton from '../components/HeaderButton'
-
-// import { deleteInterview } from '../centralstore/actions/interviews'
-// import { fetchInterviews } from '../centralstore/actions/interviews'
 // const UpcomingInterviewsScreen = (props) => {
-//   const adminProducts = useSelector((state) => state.interviews.adminProducts)
-//   // const adminProducts = INTERVIEWS
-//   const dispatch = useDispatch()
 //   const [error, setError] = useState(null)
 //   const [isLoading, setIsLoading] = useState(false)
 
@@ -108,7 +98,6 @@
 //     <FlatList
 //       data={adminProducts}
 //       keyExtractor={(item) => item.id}
-//       // onRefresh={loadInterviews}
 //       renderItem={(itemData) => (
 //         <Card
 //           title={itemData.item.title}
@@ -127,32 +116,6 @@
 //     ///////////
 //   )
 // }
-// const styles = StyleSheet.create({
-//   centered: {
-//     alignItems: 'center',
-//     justifyContent: 'center',
-//     flex: 1,
-//   },
-// })
-
-// UpcomingInterviewsScreen.navigationOptions = (navData) => {
-//   return {
-//     headerTitle: 'Upcoming Interviews',
-// headerRight: () => {
-//   return (
-//     <HeaderButtons HeaderButtonComponent={HeaderButton}>
-//       <Item
-//         onPress={() => navData.navigation.navigate('NewInterview')}
-//         iconName='md-add'
-//         title='Add'
-//       />
-//     </HeaderButtons>
-//   )
-// },
-//   }
-// }
-
-// export default UpcomingInterviewsScreen
 
 import React, { useState, useEffect } from 'react'
 import { FlatList, Text, Alert } from 'react-native'
@@ -172,13 +135,13 @@ const UpcomingInterviewsScreen = (props) => {
   const deleteHandler = (id) => {
     Alert.alert('Are you sure?', ' You want to delete this item?', [
       {
+        text: 'No',
+        style: 'default',
+      },
+      {
         text: 'Yes',
         style: 'destructive',
         onPress: () => dispatch(interviewActions.deleteInterview(id)),
-      },
-      {
-        text: 'No',
-        style: 'default',
       },
     ])
   }

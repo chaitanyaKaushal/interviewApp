@@ -7,8 +7,7 @@ import {
   ImageBackground,
   Button,
 } from 'react-native'
-// onSelectLeftBtn = ViewDetails=================
-//props->onSelectLeftBtn, title, startTime, endTime
+
 const imgUrl =
   'https://thumbs.dreamstime.com/b/person-looking-job-blocks-magnifying-glass-close-up-s-hand-desk-181249768.jpg'
 const Card = (props) => {
@@ -22,8 +21,7 @@ const Card = (props) => {
     endHour,
     endMinutes,
   } = props
-  // startTime = new Date(startTime).toString()
-  // endTime = new Date(endTime).toString()
+
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={props.onSelect}>
@@ -111,7 +109,6 @@ const styles = StyleSheet.create({
   },
   container: {
     overflow: 'hidden',
-    // flex: 1,
     height: 300,
     margin: 20,
     borderRadius: 20,
