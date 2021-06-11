@@ -5,12 +5,25 @@ import {
   StyleSheet,
   TouchableOpacity,
   ImageBackground,
+  Button,
 } from 'react-native'
 // onSelectLeftBtn = ViewDetails=================
 //props->onSelectLeftBtn, title, startTime, endTime
 const imgUrl =
   'https://thumbs.dreamstime.com/b/person-looking-job-blocks-magnifying-glass-close-up-s-hand-desk-181249768.jpg'
 const Card = (props) => {
+  let {
+    startDate,
+    startMonth,
+    startHour,
+    startMinutes,
+    endDate,
+    endMonth,
+    endHour,
+    endMinutes,
+  } = props
+  // startTime = new Date(startTime).toString()
+  // endTime = new Date(endTime).toString()
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={props.onSelect}>
@@ -25,8 +38,36 @@ const Card = (props) => {
             </ImageBackground>
           </View>
           <View style={styles.timeContainer}>
-            <Text style={styles.time}>{props.startTime}</Text>
-            <Text style={styles.time}>{props.endTime}</Text>
+            <Text styles={styles.time}>
+              {startDate}
+              {'/'}
+            </Text>
+            <Text styles={styles.time}>{startMonth} </Text>
+            <Text styles={styles.time}>
+              {startHour}
+              {':'}
+            </Text>
+            <Text styles={styles.time}>
+              {startMinutes}
+              {'    till '}
+            </Text>
+
+            <Text styles={styles.time}>
+              {endDate}
+              {'/'}
+            </Text>
+            <Text styles={styles.time}>{endMonth} </Text>
+            <Text styles={styles.time}>
+              {endHour}
+              {':'}
+            </Text>
+            <Text styles={styles.time}>{endMinutes}</Text>
+
+            <Button
+              color='royalblue'
+              onPress={props.onPressDelete}
+              title='Delete'
+            />
           </View>
         </View>
       </TouchableOpacity>
@@ -77,7 +118,7 @@ const styles = StyleSheet.create({
   },
   time: {
     fontFamily: 'open-sans',
-    fontSize: 12,
+    fontSize: 10,
     color: 'black',
     paddingVertical: 10,
   },
