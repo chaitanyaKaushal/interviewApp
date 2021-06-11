@@ -9,20 +9,21 @@ import { Provider } from 'react-redux'
 import { applyMiddleware } from 'redux'
 import ReduxThunk from 'redux-thunk'
 
+import { init } from './db'
+init()
+  .then(() => {
+    console.log('Initialized database')
+  })
+  .catch((err) => {
+    console.log('Initializing Failed')
+    console.log(err)
+  })
+
 const rootReducer = combineReducers({
   interviews: interviewsReducers,
   // candidates: candidatesReducers,
 })
-const store = createStore(rootReducer)
-// import { init } from './db'
-// init()
-//   .then(() => {
-//     console.log('Initialized database')
-//   })
-//   .catch((err) => {
-//     console.log('Initializing Failed')
-//     console.log(err)
-//   })
+const store = createStore(rootReducer, applyMiddleware(ReduxThunk))
 
 const fetchFonts = () => {
   return Font.loadAsync({

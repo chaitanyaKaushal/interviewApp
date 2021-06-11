@@ -166,7 +166,9 @@ const UpcomingInterviewsScreen = (props) => {
     (state) => state.interviews.adminInterviews
   )
   const dispatch = useDispatch()
-
+  useEffect(() => {
+    dispatch(interviewActions.loadInterviews())
+  }, [dispatch])
   const deleteHandler = (id) => {
     Alert.alert('Are you sure?', ' You want to delete this item?', [
       {

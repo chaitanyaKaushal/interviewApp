@@ -354,6 +354,9 @@ const NewInterviewScreen = (props) => {
       return
     }
     for (let i = 0; i < adminInterviews.length; i++) {
+      if (editedInterview && adminInterviews[i].id === editedInterview.id) {
+        continue
+      }
       const candidateString = adminInterviews[i].candidates
       for (const x in formState.inputValues.candidates.split(' ')) {
         if (
@@ -624,6 +627,7 @@ const NewInterviewScreen = (props) => {
             autoCorrect
             // multiline
             // numberOfLines={3}
+            returnKeyType='next'
             onInputChange={inputChangeHandler}
             initialValue={editedInterview ? editedInterview.endDate : ''}
             initiallyValid={!!editedInterview}

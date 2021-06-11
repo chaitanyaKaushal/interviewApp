@@ -66,9 +66,11 @@ import {
   DELETE_INTERVIEW,
   UPDATE_INTERVIEW,
   CREATE_INTERVIEW,
+  SET_INTERVIEWS, //// yaha change kiya
 } from '../actions/interviews'
 const initialState = {
-  adminInterviews: INTERVIEWS,
+  // adminInterviews: INTERVIEWS,
+  adminInterviews: [],
 }
 
 export default (state = initialState, action) => {
@@ -82,7 +84,7 @@ export default (state = initialState, action) => {
       }
     case CREATE_INTERVIEW:
       const newInterview = new Interview(
-        new Date().getTime().toString(),
+        action.interviewData.id.toString(), // yaha pe voh id daaldo
         action.interviewData.title,
         action.interviewData.startDate,
         action.interviewData.startMonth,
@@ -120,6 +122,25 @@ export default (state = initialState, action) => {
       return {
         ...state,
         adminInterviews: updatedInterviews,
+      }
+    case SET_INTERVIEWS:
+      return {
+        ...state,
+        adminInterviews: action.adminInterviews.map(
+          (interview) =>
+            new Interview(
+              interview.id.toString(),
+              interview.title,
+              interview.startDate,
+              interview.startMonth,
+              interview.startHour,
+              interview.startMinutes,
+              interview.endDate,
+              interview.endMonth,
+              interview.endHour,
+              interview.endMinutes
+            )
+        ),
       }
   }
   return state
