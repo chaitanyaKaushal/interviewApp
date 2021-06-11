@@ -256,7 +256,7 @@ import { useSelector, useDispatch } from 'react-redux'
 
 import * as interviewActions from '../centralstore/actions/interviews'
 import Input from '../components/Input'
-
+import interviewsReducer from '../centralstore/reducers/interviews'
 //testing
 // import DateTimePickerModal from 'react-native-modal-datetime-picker'
 
@@ -297,6 +297,9 @@ const NewInterviewScreen = (props) => {
     state.interviews.adminInterviews.find(
       (interview) => interview.id === interviewId
     )
+  )
+  const adminInterviews = useSelector(
+    (state) => state.interviews.adminInterviews
   )
   const [formState, dispatchFormState] = useReducer(formReducer, {
     inputValues: {
@@ -350,6 +353,33 @@ const NewInterviewScreen = (props) => {
       ])
       return
     }
+    for (let i = 0; i < adminInterviews.length; i++) {
+      const candidateString = adminInterviews[i].candidates
+      for (const x in formState.inputValues.candidates.split(' ')) {
+        if (
+          candidateString.search(
+            formState.inputValues.candidates.split(' ')[x]
+          ) != -1
+        ) {
+          let existingEndTime = adminInterviews[i].endDate.concat(
+            adminInterviews[i].endMonth,
+            adminInterviews[i].endHour,
+            adminInterviews[i].endMinutes
+          )
+          if (+startTime < +existingEndTime) {
+            Alert.alert(
+              'Sorry!',
+              `${
+                formState.inputValues.candidates.split(' ')[x]
+              } is not available!`,
+              [{ text: 'Okay', style: 'destructive' }]
+            )
+            return
+          }
+        }
+      }
+    }
+    ////////////////////////////////////////////////////////////////////////////
     // startTime = formState.inputValidities.startDate.concat(
     //   formState.inputValidities.startMon,
     //   formState.inputValidities.startHour,

@@ -25,7 +25,7 @@ const INTERVIEWS = [
     '01',
     '01',
     '00',
-    'ckaushal2028@gmail.com manavtakaushal@gmail.com'
+    'bolt1@bolt.com manavtakaushal@gmail.com'
   ),
   new Interview(
     'i3',
@@ -38,7 +38,7 @@ const INTERVIEWS = [
     '01',
     '01',
     '00',
-    'mohanlal@rani.com'
+    'mohanlal@rani.com shiv1@shiv.com'
   ),
   new Interview(
     'i4',
@@ -51,20 +51,7 @@ const INTERVIEWS = [
     '01',
     '01',
     '00',
-    'max1@max.com shiv1@shiv.com'
-  ),
-  new Interview(
-    'i5',
-    'interview 5',
-    '01',
-    '01',
-    '01',
-    '00',
-    '02',
-    '01',
-    '01',
-    '00',
-    'bolt1@bolt.com'
+    'bless1@bless.com test1@test.com beta1@beta.com max1@max.com'
   ),
 ]
 

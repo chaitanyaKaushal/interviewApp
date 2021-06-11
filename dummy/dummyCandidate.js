@@ -19,5 +19,10 @@ const CANDIDATES = [
   new Candidate('u5', 'Max', 'max1@max.com'),
   new Candidate('u6', 'Shiv', 'shiv1@shiv.com'),
   new Candidate('u7', 'Bolt', 'bolt1@bolt.com'),
+  new Candidate('u8', 'Bless', 'bless1@bless.com'),
+  new Candidate('u9', 'Test', 'test1@test.com'),
+  new Candidate('u10', 'Beta', 'beta1@beta.com'),
+  new Candidate('u11', 'Alpha', 'alpha1@alpha.com'),
+  new Candidate('u12', 'Psy', 'psy1@psy.com'),
 ]
 export default CANDIDATES

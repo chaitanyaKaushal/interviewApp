@@ -97,6 +97,8 @@
 
 import React, { useReducer, useEffect } from 'react'
 import { View, Text, TextInput, StyleSheet } from 'react-native'
+import { useSelector, useDispatch } from 'react-redux'
+import interviewsReducer from '../centralstore/reducers/interviews'
 
 const INPUT_CHANGE = 'INPUT_CHANGE'
 const INPUT_BLUR = 'INPUT_BLUR'
@@ -134,6 +136,10 @@ const Input = (props) => {
     }
   }, [inputState, onInputChange, id])
 
+  const adminInterviews = useSelector(
+    (state) => state.interviews.adminInterviews
+  )
+
   const textChangeHandler = (text) => {
     const emailRegex =
       /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
@@ -150,13 +156,14 @@ const Input = (props) => {
         isValid = false
       } else {
         for (const x in text.split(' ')) {
-          //   console.log(text.split(' ')[x].toLowerCase())
+          console.log(text.split(' ')[x].toLowerCase())
           if (!emailRegex.test(text.split(' ')[x].toLowerCase())) {
             isValid = false
             break
           }
         }
       }
+
       //   isValid = true
     }
     if (props.min != null && +text < props.min) {
