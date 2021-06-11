@@ -146,6 +146,7 @@ const NewInterviewScreen = (props) => {
     //   ])
     //   return
     // }
+    let flag = false
     for (let i = 0; i < adminInterviews.length; i++) {
       if (editedInterview && adminInterviews[i].id === editedInterview.id) {
         continue
@@ -157,12 +158,38 @@ const NewInterviewScreen = (props) => {
             formState.inputValues.candidates.split(' ')[x]
           ) != -1
         ) {
-          let existingEndTime = adminInterviews[i].endDate.concat(
-            adminInterviews[i].endMonth,
-            adminInterviews[i].endHour,
-            adminInterviews[i].endMinutes
-          )
-          if (+startTime < +existingEndTime) {
+          // let existingEndTime = adminInterviews[i].endDate.concat(
+          //   adminInterviews[i].endMonth,
+          //   adminInterviews[i].endHour,
+          //   adminInterviews[i].endMinutes
+          // )
+          // if (+startTime < +existingEndTime) {
+          //   Alert.alert(
+          //     'Sorry!',
+          //     `${
+          //       formState.inputValues.candidates.split(' ')[x]
+          //     } is not available!`,
+          //     [{ text: 'Okay', style: 'destructive' }]
+          //   )
+          //   return
+          // }
+          if (
+            +adminInterviews[i].endMonth > +formState.inputValues.startMonth ||
+            (+formState.inputValues.startMonth ==
+              +adminInterviews[i].endMonth &&
+              +adminInterviews[i].endDate > +formState.inputValues.startDate) ||
+            (+formState.inputValues.startMonth ==
+              +adminInterviews[i].endMonth &&
+              +adminInterviews[i].endDate == +formState.inputValues.startDate &&
+              +adminInterviews[i].endHour > +formState.inputValues.startHour) ||
+            (+formState.inputValues.startMonth ==
+              +adminInterviews[i].endMonth &&
+              +adminInterviews[i].endDate == +formState.inputValues.startDate &&
+              +adminInterviews[i].endHour == +formState.inputValues.startHour &&
+              +adminInterviews[i].endMinutes >=
+                +formState.inputValues.startMinutes)
+          ) {
+            flag = true
             Alert.alert(
               'Sorry!',
               `${
@@ -170,12 +197,12 @@ const NewInterviewScreen = (props) => {
               } is not available!`,
               [{ text: 'Okay', style: 'destructive' }]
             )
-            return
+            // return
           }
         }
       }
     }
-
+    if (flag) return
     if (editedInterview) {
       dispatch(
         interviewActions.updateInterview(
