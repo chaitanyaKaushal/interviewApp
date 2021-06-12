@@ -2,14 +2,16 @@ import React, { useState } from 'react'
 import AppLoading from 'expo-app-loading'
 import * as Font from 'expo-font'
 import InterviewNavigator from './navigation/InterviewNavigator'
-
+import { LogBox } from 'react-native'
+LogBox.ignoreAllLogs()
 import { combineReducers, createStore } from 'redux'
 import interviewsReducers from './centralstore/reducers/interviews'
 import { Provider } from 'react-redux'
 import { applyMiddleware } from 'redux'
 import ReduxThunk from 'redux-thunk'
 
-import { init } from './db'
+import { init, init2, deleteComplete1, deleteComplete2 } from './db'
+
 init()
   .then(() => {
     console.log('Initialized database')
@@ -18,6 +20,21 @@ init()
     console.log('Initializing Failed')
     console.log(err)
   })
+
+init2()
+  .then(() => {
+    console.log('Initialized interview_candidates')
+  })
+  .catch((err) => {
+    console.log('interview_candidates Failed')
+    console.log(err)
+  })
+// deleteComplete1()
+//   .then(() => console.log('delete2'))
+//   .catch((err) => console.log('failed2'))
+// deleteComplete2()
+//   .then(() => console.log('delete1'))
+//   .catch((err) => console.log('failed1'))
 
 const rootReducer = combineReducers({
   interviews: interviewsReducers,

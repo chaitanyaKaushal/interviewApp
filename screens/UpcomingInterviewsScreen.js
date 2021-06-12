@@ -186,6 +186,17 @@ UpcomingInterviewsScreen.navigationOptions = (navData) => {
         </HeaderButtons>
       )
     },
+    headerLeft: () => {
+      return (
+        <HeaderButtons HeaderButtonComponent={HeaderButton}>
+          <Item
+            onPress={() => navData.navigation.navigate('Filter')}
+            iconName='md-filter'
+            title='Filter'
+          />
+        </HeaderButtons>
+      )
+    },
   }
 }
 
